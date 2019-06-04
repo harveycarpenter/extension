@@ -1,38 +1,36 @@
 {
-    "name": "TS/R/WP Chrome Extension",
-    "version": "0.0.1",
+    "update_url": "https://clients2.google.com/service/update2/crx",
     "manifest_version": 2,
-    "description": "Boilerplate for a Chrome extension with TypeScript, React, and Webpack.",
-    "homepage_url": "https://duo.com/labs",
-    "icons": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    },
-    "browser_action": {
-      "default_title": "TSRWPCX",
-      "default_popup": "popup.html"
-    },
-    "default_locale": "en",
-    "background": {
-      "scripts": [
-        "js/background.js"
+      "default_locale": "en",
+      "name": "Email Templates - For gMail",
+      "description": "Choose from 100+ beautifully designed templates, straight from gMail",
+      "version": "1.0.0",
+      "author":"Harvey Carpenter",
+      "content_security_policy": "script-src 'self' 'unsafe-inline' 'sha256-9GCLppFNC48wlKJ8M8ROUC3W7fRaA5W9zVPARYM9aYU=' https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js; object-src 'self'",
+      "background": {
+            "scripts": ["js/background.js"],
+            "persistent": false
+          },
+      "permissions": [
+        "https://mail.google.com/", "tabs", "storage", "https://unpkg.com/react@16.8.6/umd/react.production.min.js"
       ],
-      "persistent": true
-    },
-    "permissions": [
-      "https://*/*"
-    ],
-    "content_security_policy": "default-src 'self';",
-    "content_scripts": [
-      {
-        "matches": [
-          "https://*/*"
-        ],
-        "js": [
-          "js/content.js"
-        ]
-      }
-    ]
-  }
-  
+      "browser_action": {
+        "default_icon": "images/icon32.png",
+        "default_popup": "popup.html"
+      },
+      "icons" : {
+        "16" : "images/icon16.png",
+        "24" : "images/icon24.png",
+        "32" : "images/icon32.png",
+        "48" : "images/icon48.png",
+        "64" : "images/icon64.png",
+        "96" : "images/icon96.png",
+        "128" : "images/icon128.png"
+      },
+      "content_scripts" : [
+        {
+          "matches": ["https://mail.google.com/*"],
+          "js": ["js/inboxsdk.js", "js/app.js"]
+        }
+      ]
+    }
